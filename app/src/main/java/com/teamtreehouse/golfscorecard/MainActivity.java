@@ -32,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-
         mRecyclerView.setHasFixedSize(true);
 
-        Log.d("test", "Main UI code is running");
 
     }
 }

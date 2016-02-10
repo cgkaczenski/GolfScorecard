@@ -1,12 +1,18 @@
 package com.teamtreehouse.golfscorecard;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HoleAdapter extends RecyclerView.Adapter<HoleAdapter.HoleViewHolder> {
 
@@ -39,23 +45,37 @@ public class HoleAdapter extends RecyclerView.Adapter<HoleAdapter.HoleViewHolder
 
     public class HoleViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mHoleLabel;
-        public TextView mScoreLabel;
-        public Button mAddButton;
-        public Button mMinusButton;
+        @Bind(R.id.holeLabel) TextView mHoleLabel;
+        @Bind(R.id.scoreLabel) TextView mScoreLabel;
 
         public HoleViewHolder(View itemView) {
             super(itemView);
-
-            mHoleLabel = (TextView) itemView.findViewById(R.id.holeLabel);
-            mScoreLabel = (TextView) itemView.findViewById(R.id.scoreLabel);
-            mAddButton = (Button) itemView.findViewById(R.id.addButton);
-            mMinusButton = (Button) itemView.findViewById(R.id.minusButton);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bindHole(Hole hole) {
             String holeString = "Hole " + hole.getHole() + ":";
             mHoleLabel.setText(holeString);
+            mScoreLabel.setText(hole.getScore() + "");
+        }
+
+        @OnClick(R.id.addButton)
+        public void addScore() {
+            int position = this.getAdapterPosition();
+            Hole hole = mHoles[position];
+            mHoles[position].setScore(hole.getScore() + 1);
+            mScoreLabel.setText(hole.getScore() + "");
+        }
+
+        @OnClick(R.id.minusButton)
+        public void minusScore() {
+            int position = this.getAdapterPosition();
+            Hole hole = mHoles[position];
+
+            if (hole.getScore() - 1 >= 0) {
+                mHoles[position].setScore(hole.getScore() - 1);
+            }
+
             mScoreLabel.setText(hole.getScore() + "");
         }
     }
