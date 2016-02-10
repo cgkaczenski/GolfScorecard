@@ -71,11 +71,9 @@ public class HoleAdapter extends RecyclerView.Adapter<HoleAdapter.HoleViewHolder
         public void minusScore() {
             int position = this.getAdapterPosition();
             Hole hole = mHoles[position];
-
             if (hole.getScore() - 1 >= 0) {
                 mHoles[position].setScore(hole.getScore() - 1);
             }
-
             mScoreLabel.setText(hole.getScore() + "");
         }
     }
