@@ -2,11 +2,11 @@ package com.teamtreehouse.golfscorecard;
 
 public class Hole {
     private int mHole;
-    private int mScore;
+    private int mStroke;
 
-    public Hole(int hole, int score) {
+    public Hole(int hole, int stroke) {
         mHole = hole;
-        mScore = score;
+        mStroke = stroke;
     }
 
     public int getHole() {
@@ -17,11 +17,11 @@ public class Hole {
         mHole = hole;
     }
 
-    public int getScore() {
-        return mScore;
+    public int getStroke() {
+        return mStroke;
     }
 
-    public void setScore(int score) {
-        mScore = score;
+    public void setStroke(int stroke) {
+        mStroke = stroke;
     }
 }

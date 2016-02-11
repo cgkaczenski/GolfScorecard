@@ -1,15 +1,12 @@
 package com.teamtreehouse.golfscorecard;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -56,25 +53,25 @@ public class HoleAdapter extends RecyclerView.Adapter<HoleAdapter.HoleViewHolder
         public void bindHole(Hole hole) {
             String holeString = "Hole " + hole.getHole() + ":";
             mHoleLabel.setText(holeString);
-            mScoreLabel.setText(hole.getScore() + "");
+            mScoreLabel.setText(hole.getStroke() + "");
         }
 
         @OnClick(R.id.addButton)
         public void addScore() {
             int position = this.getAdapterPosition();
             Hole hole = mHoles[position];
-            mHoles[position].setScore(hole.getScore() + 1);
-            mScoreLabel.setText(hole.getScore() + "");
+            mHoles[position].setStroke(hole.getStroke() + 1);
+            mScoreLabel.setText(hole.getStroke() + "");
         }
 
         @OnClick(R.id.minusButton)
         public void minusScore() {
             int position = this.getAdapterPosition();
             Hole hole = mHoles[position];
-            if (hole.getScore() - 1 >= 0) {
-                mHoles[position].setScore(hole.getScore() - 1);
+            if (hole.getStroke() - 1 >= 0) {
+                mHoles[position].setStroke(hole.getStroke() - 1);
             }
-            mScoreLabel.setText(hole.getScore() + "");
+            mScoreLabel.setText(hole.getStroke() + "");
         }
     }
 }
